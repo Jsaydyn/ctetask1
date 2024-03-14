@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+        <div id = "titleDiv">
+        <h1 id = "gameTitle">
+            The <br>Bakery
+        </h1>
+        </div>
+
+    <div id = "startDiv">
+        <button id = "start" onclick="startGame(); playAudio('gradus2.mp3')">
+            Click To Play
+        </button>
+    </div>
+
+    
+    
+    <br>
+    <p id = 'texty'></p>
+    <button id = continue>
+        Continue
+    </button>
+    <img id = "flour" src ="">
+    <img id = "egg" src ="">
+</body>
+</html>
+
+<style>
+    body {
+
+        font-family: Ubuntu;
+        background:
+        /* top, transparent black, faked with gradient */ 
+        linear-gradient(
+          rgba(0, 0, 0, 0.7), 
+          rgba(0, 0, 0, 0.7)
+        ),
+        /* bottom, image */
+        url(background.png);
+    
+    background-size: 100%;
+    
+        color: wheat;
+        opacity: 70%;
+        
+
+        
+    }
+
+
+    h1 {
+        font-size: 150px;
+
+    }
+
+    #gameTitle {
+        transition: 0.5s ease-in-out;
+    }
+
+    #start {
+        font-family: ubuntu;
+        width: 400px;
+        height: 200px;
+        background-color: rgba(255, 0, 0, 0.262);
+        color: white;
+        border-radius: 25px;
+        font-size: 50px;
+        transition: 0.5s ease-in-out;
+
+
+        
+    }
+
+    #start:hover {
+        background-color: rgba(139, 0, 0, 0.258);
+
+    }
+
+    #startDiv {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    margin-right: 200px;
+}
+
+
+    #titleDiv {
+        
+        float: left;
+        margin: 10%;
+
+
+    }
+
+    #texty {
+    position: fixed;
+    font-size: xx-large;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: left;
+    width: 50%;
+    margin-left: 90px;
+    color: rgba(139, 0, 0, 0);
+    transition: 1s ease-in-out;
+    }
+</style>
+
+<script>
+function startGame() {
+    document.getElementById("start").style = 'opacity: 0; height: 0px;';
+    document.getElementById("texty").innerHTML = "This game helps you to learn the recipe for strawberry and mint muffins for Year 8 Food Technology. If you have not yet read the recipe, it can be accessed here:'link'. You need to know the recipe to play the game, so please have a look.";
+    document.getElementById("texty").style = "color: wheat;";
+    document.getElementById("titleDiv").style = 'color: rgba(0, 0, 0, 0);';
+}
+
+
+
+function playAudio(url) {
+  new Audio(url).play();
+}
+</script>
