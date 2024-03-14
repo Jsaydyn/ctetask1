@@ -14,7 +14,9 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
 </head>
-<body>
+
+<body id ='body'>
+    <img id = "transition" src = "transition.jpeg">
 
         <div id = "titleDiv">
         <h1 id = "gameTitle">
@@ -22,6 +24,7 @@
         </h1>
         </div>
 
+      
     <div id = "startDiv">
         <button id = "start" onclick="startGame(); playAudio('gradus2.mp3')">
             Click To Play
@@ -32,7 +35,7 @@
     
     <br>
     <p id = 'texty'></p>
-    <button id = continue>
+    <button id = continue onclick="next()">
         Continue
     </button>
     <img id = "flour" src ="">
@@ -42,7 +45,7 @@
 
 <style>
     body {
-
+        z-index: 1;
         background:
         /* top, transparent black, faked with gradient */ 
         linear-gradient(
@@ -51,12 +54,14 @@
         ),
         /* bottom, image */
         url(background.png);
+
     
     background-size: 100%;
+    background-color: burlywood;
         font-family: "Noto Serif Thai", serif;
         color: wheat;
         opacity: 70%;
-        
+
 
         
     }
@@ -67,7 +72,12 @@
 
     }
 
+    a {
+        color: rgb(95, 210, 248);
+    }
+
     #gameTitle {
+        position: fixed;
         transition: 0.5s ease-in-out;
     }
 
@@ -80,6 +90,7 @@
         color: white;
         border-radius: 25px;
         font-size: 50px;
+        border-color: white;
         transition: 0.5s ease-in-out;
 
 
@@ -109,29 +120,86 @@
     }
 
     #texty {
-    position: fixed;
-    font-size: xx-large;
-    top: 50%;
-    transform: translateY(-50%);
-    text-align: left;
-    width: 50%;
-    margin-left: 90px;
-    color: rgba(139, 0, 0, 0);
-    transition: 1s ease-in-out;
+        position: fixed;
+        font-size: xx-large;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: left;
+        width: 40%;
+        margin-left: 90px;
+        color: rgba(139, 0, 0, 0);
+        transition: 1s ease-in-out;
+    }
+
+    #continue {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        width: 400px;
+        height: 150px;
+        background-color: rgba(255, 0, 0, 0);
+        color: rgba(255, 255, 255, 0);
+        border-radius: 25px;
+        font-size: 50px;
+        transition: 0.5s ease-in-out;
+        position: fixed;
+        top: 20%;
+        transform: translateY(-50%);
+        right: 0;
+        margin-right: 200px;
+        border-color: rgba(255, 255, 255, 0);
+
+
+    }
+    #transition {
+        width: 100%;
+        height: 100vh;
+        position: fixed;
+        opacity: 0;
+        transition: opacity 0.5s;
     }
 </style>
 
 <script>
+    function playAudio(url) {
+  new Audio(url).play();
+
+  
+}
+
+
 function startGame() {
-    document.getElementById("start").style = 'opacity: 0; height: 0px;';
-    document.getElementById("texty").innerHTML = "This game helps you to learn the recipe for strawberry and mint muffins for Year 8 Food Technology. If you have not yet read the recipe, it can be accessed here:'link'. You need to know the recipe to play the game, so please have a look.";
+    document.getElementById("start").remove()
+    document.getElementById("texty").innerHTML = "This game helps you to get familiar with the recipe for strawberry and mint muffins in Year 8 Food Technology. If you have not yet read the recipe, it can be accessed <a target='_blank' rel='noopener noreferrer' href = 'https://keep.google.com/u/0/media/v2/1LGzYwYPFXpuvrlFLknGnXi_QcShl5G5qnjyggEDQH7cDaTZkrPrQhv8VNCzLNRo/1XMcSOdeM2mJdfxfSyuRtbNVuzsAaGIG5C0T8JOEDilldChWxiWJzdjKMIZVZ87I?accept=image%2Fgif%2Cimage%2Fjpeg%2Cimage%2Fjpg%2Cimage%2Fpng%2Caudio%2Faac&sz=1320'>here.</a> You need to know the recipe to play the game, so please have a look.";
     document.getElementById("texty").style = "color: wheat;";
-    document.getElementById("titleDiv").style = 'color: rgba(0, 0, 0, 0);';
+    document.getElementById("titleDiv").remove();
+    document.getElementById("continue").style = "color: white; background-color: rgba(139, 0, 0, 0.258); top: 50%; border-color: rgba(255, 255, 255, 255)";
+    
+
 }
 
 
 
-function playAudio(url) {
-  new Audio(url).play();
+
+
+
+function next(){
+    document.getElementById("transition").style = "opacity: 1;";
+
+    document.getElementById("texty").remove()
+    document.getElementById("continue").remove()
+
+    setTimeout(function(){
+        document.getElementById("transition").style = "opacity: 0;";
+        document.getElementById("body").style = "background-image: url(untitled.png);";
+
+
+            }, 500); 
+
+            setTimeout(function(){
+        document.getElementById("body").style = "background-image: url(background.png);";
+
+
+            }, 2000); 
+    
 }
 </script>
