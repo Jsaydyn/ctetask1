@@ -35,11 +35,23 @@
     
     <br>
     <p id = 'texty'></p>
+
     <button id = continue onclick="next()">
         Continue
     </button>
-    <img id = "flour" src ="">
-    <img id = "egg" src ="">
+
+    <button id = left onclick = "eggy()">
+    +
+    </button>
+
+    <button id = right onclick = "eggy2()">
+        -
+        </button>
+
+        <p id = "Step1"></p>
+
+
+
 </body>
 </html>
 
@@ -57,7 +69,7 @@
 
     
     background-size: 100%;
-    background-color: burlywood;
+    background-color: rgb(158, 175, 171);
         font-family: "Noto Serif Thai", serif;
         color: wheat;
         opacity: 70%;
@@ -157,9 +169,41 @@
         opacity: 0;
         transition: opacity 0.5s;
     }
+
+    #left {
+        visibility: hidden;
+        position: fixed;
+        border-radius: 25px;
+    }
+
+    #left:hover {
+        background-color: grey;
+    }
+    #right {
+        visibility: hidden;
+        position: fixed;
+        border-radius: 25px;
+        margin-left: 120px;
+    }
+
+    #right:hover {
+        background-color: grey;
+
+    }
+
+    #Step1 {
+        position: fixed;
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        font-size: 50px;
+        text-align: center;
+        color: black;
+    }
 </style>
 
 <script>
+
+var oventemp = 1;
     function playAudio(url) {
   new Audio(url).play();
 
@@ -196,11 +240,73 @@ function next(){
             }, 1000); 
 
             setTimeout(function(){
-        document.getElementById("body").style = "background-image: url(background.png);";
+        document.getElementById("body").style = "background-image: url(oven50.png); background-size: 90%;";
 
+        document.getElementById("left").style = "visibility: visible; font-size: 50px; width: 100px;";
+        document.getElementById("right").style = "visibility: visible; font-size: 50px; width: 100px;";
+        document.getElementById("Step1").innerHTML = "Preheat the Oven!"
 
             }, 3000); 
+
+            
+    
     
 }
+
+
+
+function eggy() {
+    oventemp++;
+    if (oventemp == 2) {
+        document.getElementById("body").style = "background-image: url(oven100.png); background-size: 90%"
+}
+
+if (oventemp == 3) {
+        document.getElementById("body").style = "background-image: url(oven150.jpeg); background-size: 90%"
+}
+
+if (oventemp == 4) {
+        document.getElementById("body").style = "background-image: url(oven200.jpeg); background-size: 90%"
+}
+
+if (oventemp == 5) {
+        document.getElementById("body").style = "background-image: url(oven250.jpeg); background-size: 90%"
+}
+
+if (oventemp == 6) {
+        oventemp=1;
+}
+}
+
+function eggy2() {
+    oventemp--;
+    if (oventemp == 2) {
+        document.getElementById("body").style = "background-image: url(oven100.jpeg); background-size: 90%"
+}
+
+if (oventemp == 3) {
+        document.getElementById("body").style = "background-image: url(oven150.jpeg); background-size: 90%"
+}
+
+if (oventemp == 4) {
+        document.getElementById("body").style = "background-image: url(oven200.jpeg); background-size: 90%"
+}
+
+if (oventemp == 5) {
+        document.getElementById("body").style = "background-image: url(oven250.jpeg); background-size: 90%"
+}
+
+if (oventemp == 1) {
+        document.getElementById("body").style = "background-image: url(oven50.jpeg); background-size: 90%"
+}
+
+if (oventemp == 0) {
+        oventemp=5;
+}
+}
+
+
+
 </script>
+
 
