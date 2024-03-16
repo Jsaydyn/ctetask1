@@ -1,85 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>The Bakery</title>
+    <link rel="icon" type="image/x-icon" href="background.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@1">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 
 </head>
 
-<body id ='body'>
-    <img id = "transition" src = "transition.jpeg">
+<body id='body'>
+    <img id="transition" src="transition.jpeg">
 
-        <div id = "titleDiv">
-        <h1 id = "gameTitle">
+    <div id="titleDiv">
+        <h1 id="gameTitle">
             The <br>Bakery
         </h1>
-        </div>
+    </div>
 
-      
-    <div id = "startDiv">
-        <button id = "start" onclick="startGame(); playAudio('gradus2.mp3')">
+
+    <div id="startDiv">
+        <button id="start" onclick="startGame(); playAudio('gradus2.mp3')">
             Click To Play
         </button>
     </div>
 
-    
-    
+
+
+
+
+
     <br>
-    <p id = 'texty'></p>
+    <p id='texty'></p>
 
 
-    <button id = continue onclick = "next()">
+    <button id=continue onclick="next()">
         Continue
     </button>
-
-    <button id = left onclick = "eggy()">
-    +
+    <a target='_blank' rel='noopener noreferrer' id='recipebut'
+        href="https://jsaydyn.github.io/ctetask1/recip.html">View Recipe</a>
+    <p id="Step1"></p>
+    <p id="Step2"></p>
+    <button id='left' onclick="eggy()">
+        Increase Temperature
     </button>
 
-    <button id = right onclick = "eggy2()">
-        -
-        </button>
+    <button id='right' onclick="eggy2()">
+        Decrease Temperature
+    </button>
 
-    <img id = "dial">
+    <img id="dial">
 
-    <button id = continue1  onclick = "next1()">Continue</button>
+    <button id=continue1 onclick="next1()">Continue</button>
 
-        <p id = "Step1"></p>
+    <button id='lining' onclick="memory()">
+        Start Lining
+    </button>
+
 
 
 
 </body>
+
 </html>
 
 <style>
     body {
         z-index: 1;
         background:
-        /* top, transparent black, faked with gradient */ 
-        linear-gradient(
-          rgba(0, 0, 0, 0.7), 
-          rgba(0, 0, 0, 0.7)
-        ),
-        /* bottom, image */
-        url(background.png);
+            /* top, transparent black, faked with gradient */
+            linear-gradient(rgba(0, 0, 0, 0.7),
+                rgba(0, 0, 0, 0.7)),
+            /* bottom, image */
+            url(background.png);
 
-    
-    background-size: 100%;
-    background-color: rgb(142, 153, 158);
+
+        background-size: 100%;
+        background-color: rgb(142, 153, 158);
         font-family: "Noto Serif Thai", serif;
         color: wheat;
 
 
-        
+
     }
 
 
@@ -110,7 +123,7 @@
         transition: 0.5s ease-in-out;
 
 
-        
+
     }
 
     #start:hover {
@@ -119,16 +132,16 @@
     }
 
     #startDiv {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-    margin-right: 200px;
-}
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        margin-right: 200px;
+    }
 
 
     #titleDiv {
-        
+
         float: left;
         margin: 10%;
 
@@ -196,17 +209,26 @@
     #left {
         visibility: hidden;
         position: fixed;
+        margin-top: 100px;
         border-radius: 25px;
+        font-size: 30px;
+        width: 500px;
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
     }
 
     #left:hover {
         background-color: grey;
     }
+
     #right {
         visibility: hidden;
         position: fixed;
+        margin-top: 150px;
         border-radius: 25px;
-        margin-left: 120px;
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+
     }
 
     #right:hover {
@@ -218,135 +240,249 @@
         position: fixed;
         font-family: "DM Serif Display", serif;
         font-style: italic;
+        transform: translateY(-50px);
         font-size: 50px;
         text-align: center;
         color: black;
     }
-    #dial {
-        opacity:0;width:400px;height:400px;position:fixed;margin-top:150px;
+    #Step2 {
+        position: fixed;
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        transform: translateY(-50px);
+        font-size: 50px;
+        text-align: center;
+        color: black;
     }
 
-    .testbut {
+    #dial {
+        opacity: 0;
+        width: 400px;
+        height: 400px;
         position: fixed;
+        margin-top: 150px;
+    }
+
+    #recipebut {
+        position: fixed;
+        top: 90%;
+        height: 50px;
+        width: 60px;
+        opacity: 0;
+        background-color: rgb(139, 0, 0);
+        color: white;
+        text-align: center;
+        padding: 5px;
+        border-radius: 15px;
+        border-color: white;
+
+    }
+
+    #lining {
+        visibility: hidden;
+        position: fixed;
+        margin-top: 100px;
+        border-radius: 25px;
+        font-size: 30px;
+        width: 500px;
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+    }
+
+    #lining:hover {
+        background-color: grey;
     }
 </style>
 
 <script>
 
-var oventemp = 1;
+    var oventemp = 1;
+    var mistakescore = 0;
+
+    let audioElement;
 
     function playAudio(url) {
-  new Audio(url).play();
-
-  
-}
-
-
-function startGame() {
-    document.getElementById("start").remove()
-    document.getElementById("texty").innerHTML = "This game helps you to get familiar with the recipe for strawberry and mint muffins in Year 8 Food Technology. If you have not yet read the recipe, it can be accessed <a target='_blank' rel='noopener noreferrer' href = 'https://jsaydyn.github.io/ctetask1/recip.html'>here.</a> You need to know the recipe to play the game, so please have a look.";
-    document.getElementById("texty").style = "color: wheat;";
-    document.getElementById("titleDiv").remove();
-    document.getElementById("continue").style = "color: white; background-color: rgba(139, 0, 0, 0.258); top: 50%; border-color: rgba(255, 255, 255, 255)";
-    
-
-}
+        audioElement = new Audio(url);
+        audioElement.play();
+    }
 
 
 
+    function startGame() {
+        document.getElementById("start").remove()
+        document.getElementById("texty").innerHTML = "This game helps you to get familiar with the recipe for strawberry and mint muffins in Year 8 Food Technology. If you have not yet read the recipe, it can be accessed at the bottom of the screen at any time. You need to know the recipe to play the game, so please have a look.";
+
+        document.getElementById("texty").style = "color: wheat;";
+        document.getElementById("recipebut").style = "opacity: 1;";
+        document.getElementById("titleDiv").remove();
+        document.getElementById("continue").style = "color: white; background-color: rgba(139, 0, 0, 0.258); top: 50%; border-color: rgba(255, 255, 255, 255)";
+
+
+    }
 
 
 
-function next(){
-    document.getElementById("transition").style = "opacity: 1;";
-
-    document.getElementById("texty").remove()
-    document.getElementById("continue").remove()
-
-    setTimeout(function(){
-        document.getElementById("transition").style = "opacity: 0;";
-        document.getElementById("body").style = "background-image: url(untitled.png);";
-
-
-            }, 1000); 
-
-            setTimeout(function(){
-        document.getElementById("body").style = "background-image: url(markings.jpeg); background-size: 1150px; background-repeat: no-repeat;";
-
-        document.getElementById("left").style = "visibility: visible; font-size: 50px; width: 100px;";
-        document.getElementById("right").style = "visibility: visible; font-size: 50px; width: 100px;";
-        document.getElementById("Step1").innerHTML = "Preheat the Oven!";
-        document.getElementById("continue1").style = "opacity: 1;";
-        document.getElementById("dial").src = "dial1.png";
-        document.getElementById("dial").style = "margin-left:350px;opacity:1;transform:rotate(10deg);";
-
-            }, 3000); 
-
-            
-    
-    
-}
 
 
 
-function eggy() {
-    
-    oventemp++;
-    playAudio('click.mp3')
-    if (oventemp == 2) {
-        document.getElementById("dial").style = "transform: rotate(60deg);margin-left:350px;opacity:1;"
-}
+    function next() {
+        document.getElementById("transition").style = "opacity: 1;";
 
-if (oventemp == 3) {
-        document.getElementById("dial").style = "transform: rotate(122deg);margin-left:350px;opacity:1;"
-}
+        document.getElementById("texty").remove()
+        document.getElementById("continue").remove()
 
-if (oventemp == 4) {
-        document.getElementById("dial").style = "transform: rotate(170deg);margin-left:350px;opacity:1;"
-}
+        setTimeout(function () {
+            document.getElementById("transition").style = "opacity: 0;";
+            document.getElementById("body").style = "background-image: url(untitled.png); background-size: 120%";
 
-if (oventemp == 5) {
-         document.getElementById("dial").style = "transform: rotate(230deg);margin-left:350px;opacity:1;"
-}
 
-if (oventemp == 6) {
-        oventemp--;
-}
-}
+        }, 1000);
 
-function eggy2() {
-    oventemp--;
-    playAudio('click.mp3')
-    if (oventemp == 1) {
-        document.getElementById("dial").style = "transform: rotate(10deg);margin-left:350px;opacity:1;"
-}
-if (oventemp == 2) {
-        document.getElementById("dial").style = "transform: rotate(60deg);margin-left:350px;opacity:1;"
-}
+        setTimeout(function () {
+            document.getElementById("body").style = "background-image: url(markings.jpeg); background-size: 1150px; background-repeat: no-repeat;";
 
-if (oventemp == 3) {
-        document.getElementById("dial").style = "transform: rotate(122deg);margin-left:350px;opacity:1;"
-}
+            document.getElementById("left").style = "visibility: visible; font-size: 30px; width: 400px;";
+            document.getElementById("right").style = "visibility: visible; font-size: 30px; width: 400px;";
+            document.getElementById("Step1").innerHTML = "Step 1. Preheat the Oven!";
+            document.getElementById("continue1").style = "opacity: 1;";
+            document.getElementById("dial").src = "dial1.png";
+            document.getElementById("dial").style = "margin-left:350px;opacity:1;transform:rotate(10deg);";
 
-if (oventemp == 4) {
-        document.getElementById("dial").style = "transform: rotate(170deg);margin-left:350px;opacity:1;"
-}
+        }, 2000);
 
-if (oventemp == 5) {
-         document.getElementById("dial").style = "transform: rotate(230deg);margin-left:350px;opacity:1;"
-}
 
-if (oventemp == 0) {
+
+
+    }
+
+
+
+    function eggy() {
+
         oventemp++;
-}
-}
+        playAudio('click.mp3')
+        if (oventemp == 2) {
+            document.getElementById("dial").style = "transform: rotate(60deg);margin-left:350px;opacity:1;"
+        }
 
-function next1 () {
-    if (oventemp ==4) {
-        document.getElementById("continue1").innerHTML = "Lorem ipsum carrots carrots"
+        if (oventemp == 3) {
+            document.getElementById("dial").style = "transform: rotate(122deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 4) {
+            document.getElementById("dial").style = "transform: rotate(170deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 5) {
+            document.getElementById("dial").style = "transform: rotate(230deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 6) {
+            oventemp--;
+        }
     }
-    else {
-        document.getElementById("continue1").innerHTML = "Try Again!"
+
+    function eggy2() {
+        oventemp--;
+        playAudio('click.mp3')
+        if (oventemp == 1) {
+            document.getElementById("dial").style = "transform: rotate(10deg);margin-left:350px;opacity:1;"
+        }
+        if (oventemp == 2) {
+            document.getElementById("dial").style = "transform: rotate(60deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 3) {
+            document.getElementById("dial").style = "transform: rotate(122deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 4) {
+            document.getElementById("dial").style = "transform: rotate(170deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 5) {
+            document.getElementById("dial").style = "transform: rotate(230deg);margin-left:350px;opacity:1;"
+        }
+
+        if (oventemp == 0) {
+            oventemp++;
+        }
     }
-}
+
+    function next1() {
+        if (oventemp == 4) {
+            document.getElementById("continue1").innerHTML = "You Got It!"
+            playAudio("correct.mp3")
+
+            document.getElementById("transition").style = "opacity: 1;";
+
+        document.getElementById("dial").remove()
+        document.getElementById("continue1").remove()
+        document.getElementById("left").remove()
+        document.getElementById("right").remove()
+        document.getElementById("Step1").remove()
+
+        setTimeout(function () {
+            document.getElementById("transition").style = "opacity: 0;";
+            document.getElementById("body").style = "background-image: url(bench.jpg);";
+            
+
+        }, 1000);
+        
+        setTimeout(function () {
+            document.getElementById("body").style = "background-image: url(tray.jpg);";
+            document.getElementById("Step2").innerHTML = "Step 2. Line the Muffin Tray!";
+            document.getElementById("lining").style = "visibility: visible;";
+
+
+        }, 2000);
+        }
+        else if (document.getElementById("continue1").innerHTML == "Try Again!") {
+            document.getElementById("continue1").innerHTML = "Read The Recipe?"
+            playAudio("error.mp3")
+            mistakescore++;
+        }
+        else {
+            document.getElementById("continue1").innerHTML = "Try Again!"
+            playAudio("error.mp3")
+            mistakescore++;
+        }
+
+
+    }
+
+    function memory() {
+        document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>7";
+        document.getElementById("body").style = "background-image: url(traylined.jpg);";
+        document.getElementById("lining").remove()
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>6";
+        }, 1000);
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>5";
+        }, 2000);
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>4";
+        }, 3000);
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>3";
+        }, 4000);
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>2";
+        }, 5000);
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>1";
+        }, 6000);
+
+        setTimeout(function () {
+            document.getElementById("Step2").innerHTML = "Click On The Correct Pattern.";
+            document.getElementById("body").style = "background-image: url(tray.jpg);";
+        }, 7000);
+    }
 </script>
