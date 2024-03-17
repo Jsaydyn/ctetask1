@@ -37,11 +37,16 @@
     </div>
 
 
+<div style = "margin-left: 1000px; margin-top: 700px; position: fixed;">
 
+<p>DEVELOPER BUTTONS: REMOVE IN FINAL PRODUCT</p>
 
-
-
+<button onclick="startGame(); next();" style = "position:fixed">Oven</button>
+<button onclick="startGame(); next(); oventemp =4; next1()" style = "position:fixed; margin-left: 50px;">Liner</button>
+</div>
     <br>
+
+    
     <p id='texty'></p>
 
 
@@ -67,6 +72,13 @@
     <button id='lining' onclick="memory()">
         Start Lining
     </button>
+
+    <div id = quizzics>
+    <img class = "fake" id ="fake1" onclick="memVal = 1; checkMemGame()">
+    <img class = "fake" id ="fake2" onclick="memVal = 2; checkMemGame()">
+    <img class = "fake" id ="real" onclick="memVal = 3; checkMemGame()">
+    <img class = "fake" id ="fake3" onclick="memVal = 4; checkMemGame()">
+</div>
 
 
 
@@ -119,8 +131,9 @@
         color: white;
         border-radius: 25px;
         font-size: 50px;
-        border-color: white;
+        border-color: wheat;
         transition: 0.5s ease-in-out;
+
 
 
 
@@ -176,6 +189,7 @@
         right: 0;
         margin-right: 200px;
         border-color: rgba(255, 255, 255, 0);
+        border-style: solid;
     }
 
     #continue1 {
@@ -195,6 +209,7 @@
         transform: translateY(-50%);
         right: 0;
         margin-right: 100px;
+        border-style: solid;
 
     }
 
@@ -251,8 +266,8 @@
         font-style: italic;
         transform: translateY(-50px);
         font-size: 50px;
-        text-align: center;
-        color: black;
+        text-align: left;
+        color: wheat;
     }
 
     #dial {
@@ -275,6 +290,7 @@
         padding: 5px;
         border-radius: 15px;
         border-color: white;
+        border-style: solid;
 
     }
 
@@ -292,12 +308,44 @@
     #lining:hover {
         background-color: grey;
     }
+
+    .fake {
+        position: fixed;
+        width: 500px;
+        border-color: wheat;
+        border-style: solid;
+        border-width: 5px;
+    }
+
+    #fake2 {
+        margin-left: 500px;
+    }
+
+    #real {
+        margin-top: 325px;
+    }
+
+    #fake3 {
+        margin-left: 500px;
+        margin-top: 325px;
+    }
+    #quizzics {
+        display: flex;
+        float: left;
+        width: 90vw;
+        height: 90vh;
+        position: fixed;
+        margin-top: 3000px;
+        margin-left: 100px;
+        background-image: (url(tray.jpg));
+    }
 </style>
 
 <script>
 
     var oventemp = 1;
     var mistakescore = 0;
+    var memVal = 0;
 
     let audioElement;
 
@@ -343,7 +391,7 @@
 
             document.getElementById("left").style = "visibility: visible; font-size: 30px; width: 400px;";
             document.getElementById("right").style = "visibility: visible; font-size: 30px; width: 400px;";
-            document.getElementById("Step1").innerHTML = "Step 1. Preheat the Oven!";
+            document.getElementById("Step1").innerHTML = "Step 1. Preheat the Oven To The Correct Temperature!";
             document.getElementById("continue1").style = "opacity: 1;";
             document.getElementById("dial").src = "dial1.png";
             document.getElementById("dial").style = "margin-left:350px;opacity:1;transform:rotate(10deg);";
@@ -412,8 +460,10 @@
     function next1() {
         if (oventemp == 4) {
             document.getElementById("continue1").innerHTML = "You Got It!"
+            document.getElementById("continue1").style = "background-color:lime; opacity:1;"
             playAudio("correct.mp3")
 
+            setTimeout(function () {
             document.getElementById("transition").style = "opacity: 1;";
 
         document.getElementById("dial").remove()
@@ -431,19 +481,16 @@
         
         setTimeout(function () {
             document.getElementById("body").style = "background-image: url(tray.jpg);";
-            document.getElementById("Step2").innerHTML = "Step 2. Line the Muffin Tray!";
+            document.getElementById("Step2").innerHTML = "Step 2. Line the Muffin Tray By Memorising The Pattern!";
             document.getElementById("lining").style = "visibility: visible;";
 
 
         }, 2000);
-        }
-        else if (document.getElementById("continue1").innerHTML == "Try Again!") {
-            document.getElementById("continue1").innerHTML = "Read The Recipe?"
-            playAudio("error.mp3")
-            mistakescore++;
+        }, 500);
         }
         else {
-            document.getElementById("continue1").innerHTML = "Try Again!"
+            document.getElementById("continue1").innerHTML = "Read The Recipe To Find The Temperature!"
+            document.getElementById("continue1").style = "font-size:30px; opacity: 1;"
             playAudio("error.mp3")
             mistakescore++;
         }
@@ -452,37 +499,114 @@
     }
 
     function memory() {
-        document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>7";
+        document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>5";
         document.getElementById("body").style = "background-image: url(traylined.jpg);";
-        document.getElementById("lining").remove()
-
-        setTimeout(function () {
-            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>6";
-        }, 1000);
-
-        setTimeout(function () {
-            document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>5";
-        }, 2000);
+        document.getElementById("lining").style="margin-top:3000px"
 
         setTimeout(function () {
             document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>4";
-        }, 3000);
+        }, 1000);
 
         setTimeout(function () {
             document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>3";
-        }, 4000);
+        }, 2000);
 
         setTimeout(function () {
             document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>2";
-        }, 5000);
+        }, 3000);
 
         setTimeout(function () {
             document.getElementById("Step2").innerHTML = "Memorise The Pattern of The Muffin Liners!<br>1";
-        }, 6000);
+        }, 4000);
 
         setTimeout(function () {
             document.getElementById("Step2").innerHTML = "Click On The Correct Pattern.";
             document.getElementById("body").style = "background-image: url(tray.jpg);";
-        }, 7000);
+            document.getElementById("quizzics").style ="margin-top: 100px;"
+            document.getElementById("fake1").src = "fakelined1.jpg"
+            document.getElementById("fake2").src = "fakelined2.jpg"
+            document.getElementById("real").src = "traylined.jpg"
+            document.getElementById("fake3").src = "fakelined3.jpg"
+        }, 5000);
     }
+
+    function checkMemGame() {
+    if (memVal == 3) {
+        playAudio("correct.mp3")
+        document.getElementById("Step2").innerHTML = "You Got It!";
+        document.getElementById("Step2").style = "color:lime;";
+        document.getElementById("fake1").style = "border-color:lime"
+        document.getElementById("fake2").style = "border-color:lime"
+        document.getElementById("real").style = "border-color:lime"
+        document.getElementById("fake3").style = "border-color:lime"
+
+        setTimeout(function () {
+            document.getElementById("body").style = "background-image: url(benchlined.jpg);";
+        }, 500);
+        document.getElementById("Step2").remove();
+        document.getElementById("fake1").remove();
+        document.getElementById("fake2").remove();
+        document.getElementById("real").remove();
+        document.getElementById("fake3").remove();
+    }
+    else {
+        playAudio("error.mp3")
+        mistakescore ++;
+        document.getElementById("Step2").innerHTML = "Wrong Pattern!";
+        document.getElementById("Step2").style = "color:red";
+
+
+
+
+            document.getElementById("fake1").style = "border-color:red"
+            document.getElementById("fake2").style = "border-color:red"
+            document.getElementById("real").style = "border-color:red"
+            document.getElementById("fake3").style = "border-color:red"
+
+        
+        setTimeout(function () {
+            document.getElementById("fake1").style = "border-color:wheat"
+            document.getElementById("fake2").style = "border-color:wheat"
+            document.getElementById("real").style = "border-color:wheat"
+            document.getElementById("fake3").style = "border-color:wheat"
+        }, 100);
+
+                
+        setTimeout(function () {
+            document.getElementById("fake1").style = "border-color:red"
+            document.getElementById("fake2").style = "border-color:red"
+            document.getElementById("real").style = "border-color:red"
+            document.getElementById("fake3").style = "border-color:red"
+        }, 200);
+
+        setTimeout(function () {
+            document.getElementById("fake1").style = "border-color:wheat"
+            document.getElementById("fake2").style = "border-color:wheat"
+            document.getElementById("real").style = "border-color:wheat"
+            document.getElementById("fake3").style = "border-color:wheat"
+        }, 300);
+
+                
+        setTimeout(function () {
+            document.getElementById("fake1").style = "border-color:red"
+            document.getElementById("fake2").style = "border-color:red"
+            document.getElementById("real").style = "border-color:red"
+            document.getElementById("fake3").style = "border-color:red"
+        }, 400);
+
+        setTimeout(function () {
+            document.getElementById("fake1").style = "border-color:wheat"
+            document.getElementById("fake2").style = "border-color:wheat"
+            document.getElementById("real").style = "border-color:wheat"
+            document.getElementById("fake3").style = "border-color:wheat"
+            document.getElementById("quizzics").style ="margin-top: 3000px;"
+            memory();
+            document.getElementById("Step2").style = "color:wheat";
+        }, 500);
+
+
+
+    }
+}
 </script>
+
