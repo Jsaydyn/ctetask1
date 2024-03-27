@@ -43,6 +43,8 @@
 
 <button onclick="startGame(); next();" style = "position:fixed">Oven</button>
 <button onclick="startGame(); next(); oventemp =4; next1()" style = "position:fixed; margin-left: 50px;">Liner</button>
+<button onclick=" memVal=3; checkMemGame()" style = "position:fixed; margin-left: 100px;">Dry</button>
+<button id = "continue2" onclick="test();" style = "position:fixed; margin-left: 250px;">Continue</button>
 </div>
     <br>
 
@@ -72,6 +74,81 @@
     <button id='lining' onclick="memory()">
         Start Lining
     </button>
+
+    <p id = "step3"></p>
+
+    <div id = "gameDry">   
+        <form>
+
+            <div class = "form3" id = "flourMeasure">
+            <img id ="flour" class="dryIngredient">
+            <label for = "flourTextInput">Amount:</label><br>
+            <input type = text id ="flourTextInput" autocomplete="off">
+
+            <select  id = "flourUnit">
+                <option value="0">Select a Unit</option>
+                <option value="1">Teaspoon(s)</option>
+                <option value="2">Cup(s)</option>
+            </select>
+        </div>
+
+        <div class = "form3" id = "sugarMeasure">
+            <img id ="sugar" class="dryIngredient">
+            <label for = "sugarTextInput">Amount:</label><br>
+            <input id = "sugarTextInput" type = text autocomplete="off">
+
+            <select  id = "sugarUnit">
+                <option value="0">Select a Unit</option>
+                <option value="1">Teaspoon(s)</option>
+                <option value="2">Cup(s)</option>
+            </select>
+        </div>
+
+        </form>
+        </div>
+
+        <div id ="gameDryC2">
+
+        <div class = "form3" id = "powderMeasure">
+            <img id ="bakingPowder" class="dryIngredient">
+            <label for = "powderTextInput">Amount:</label><br>
+            <input id = "powderTextInput" type = text autocomplete="off">
+
+
+        <select  id = "powderUnit">
+            
+            <option value="0">Select a Unit</option>
+            <option value="1">Teaspoon(s)</option>
+            <option value="2">Cup(s)</option>
+        </select>
+        </div>
+        
+        <div class = "form3" id = "saltMeasure">
+            <img id ="salt" class="dryIngredient">
+            <label for = "saltTextInput">Amount:</label><br>
+            <input id = "saltTextInput" type = text autocomplete="off">
+
+            <select  id = "saltUnit">
+                <option value="0">Select a Unit</option>
+                <option value="1">Teaspoon(s)</option>
+                <option value="2">Cup(s)</option>
+            </select>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+        </form>
+    </div>
+
+    
+
+
 
     <div id = quizzics>
     <img class = "fake" id ="fake1" onclick="memVal = 1; checkMemGame()">
@@ -319,15 +396,22 @@
 
     #fake2 {
         margin-left: 500px;
+        position: fixed;
     }
 
     #real {
         margin-top: 325px;
+        position: fixed;
     }
 
+
+    #fake1 {
+        position: fixed;
+    }
     #fake3 {
         margin-left: 500px;
         margin-top: 325px;
+        position: fixed;
     }
     #quizzics {
         display: flex;
@@ -339,6 +423,94 @@
         margin-left: 100px;
         background-image: (url(tray.jpg));
     }
+    .dryIngredient {
+        width: 200px;
+        height: 200px;
+        position: fixed;
+        transform: translateX(-150px);
+    }
+
+    #gameDry {
+        display: flex;
+        float: left;
+        position: fixed;
+        margin-top: 9000px;
+    }
+
+    #gameDryC2 {
+        display: flex;
+        float: left;
+        margin-left: 500px;
+        position: fixed;
+        margin-top: 9000px;
+    }
+
+
+    #step3 {
+        position: fixed;
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        transform: translateY(-50px);
+        font-size: 50px;
+        text-align: left;
+        color: black;
+    }
+
+
+    .form3 {
+        position: fixed;
+        margin-left: 165px;
+    }
+
+    .form4 {
+        position: fixed;
+        margin-left: 400px;
+    }
+
+
+    input {
+        font-family: "DM Serif Display", serif;
+        height: 25px;
+        font-size: 15px;
+        width: 100px;
+        margin-left: 60px;
+        padding-left: 5px;
+        border-radius: 5px;
+        border-width: 2px;
+    }
+    select {
+        height: 50px;
+        border-width: 2px;
+        margin-left: 5px;
+        border-radius: 5px;
+    }
+
+    label {
+        margin-left: 70px;
+         color: black;
+          position: fixed; 
+          transform: translateY(6px);
+    }
+
+    #continue2 {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        width: 400px;
+        height: 150px;
+        background-color: rgb(139, 0, 0);
+        opacity: 0;
+        color: rgb(255, 255, 255);
+        border-radius: 25px;
+        font-size: 50px;
+        transition: 0.5s ease-in-out;
+        transition: opacity 0.5s;
+        position: fixed;
+        top: 80%;
+        transform: translateY(-50%);
+        right: 0;
+        margin-right: 100px;
+        border-style: solid;
+    }
 </style>
 
 <script>
@@ -346,6 +518,8 @@
     var oventemp = 1;
     var mistakescore = 0;
     var memVal = 0;
+    var cupMeasure=0;
+    var cupMeasure1=0;
 
     let audioElement;
 
@@ -533,21 +707,47 @@
     function checkMemGame() {
     if (memVal == 3) {
         playAudio("correct.mp3")
-        document.getElementById("Step2").innerHTML = "You Got It!";
-        document.getElementById("Step2").style = "color:lime;";
-        document.getElementById("fake1").style = "border-color:lime"
-        document.getElementById("fake2").style = "border-color:lime"
-        document.getElementById("real").style = "border-color:lime"
-        document.getElementById("fake3").style = "border-color:lime"
-
-        setTimeout(function () {
-            document.getElementById("body").style = "background-image: url(benchlined.jpg);";
-        }, 500);
+        document.getElementById("Step2").innerHTML="You got it!";
+        document.getElementById("Step2").style="color:lime;";
         document.getElementById("Step2").remove();
         document.getElementById("fake1").remove();
         document.getElementById("fake2").remove();
         document.getElementById("real").remove();
         document.getElementById("fake3").remove();
+        document.getElementById("quizzics").remove();
+        document.getElementById("transition").style = "opacity: 1; z-index:50;";
+
+        setTimeout(function () {
+            document.getElementById("body").style = "background-image: url(emptybench.jpg);";
+
+
+        
+        document.getElementById("flour").src="flour.png";
+        document.getElementById("sugar").src="sugar.jpg";
+        document.getElementById("salt").src="salt.jpg";
+        document.getElementById("bakingPowder").src="bpowder.jpg";
+        
+        document.getElementById("flourMeasure").style="margin-top:90px;";
+        document.getElementById("sugarMeasure").style="margin-top:300px";
+        document.getElementById("saltMeasure").style="margin-top:90px";
+        document.getElementById("powderMeasure").style="margin-top:300px; ";
+
+        document.getElementById("gameDry").style="margin-top:80px"
+        document.getElementById("gameDryC2").style="margin-top:80px"
+        document.getElementById("continue2").style="opacity: 100%;"
+
+
+
+        document.getElementById("step3").innerHTML="Step 3. Enter the quantity and unit of all dry ingredients! Write fractions with a '/'."
+        }, 500);
+
+        setTimeout(function () {
+            document.getElementById("transition").style = "opacity: 0;";
+        }, 1000);
+        
+
+        
+
     }
     else {
         playAudio("error.mp3")
@@ -605,8 +805,29 @@
         }, 500);
 
 
+        }
+    }
+
+    function test() {
+        if (document.getElementById("flourTextInput").value=="2" && document.getElementById("flourUnit").value=="2" 
+        && document.getElementById("sugarTextInput").value=="3/4" && document.getElementById("sugarUnit").value=="2"
+        && document.getElementById("powderTextInput").value=="3/4" && document.getElementById("powderUnit").value=="1"
+        && document.getElementById("saltTextInput").value=="1/2" && document.getElementById("powderUnit").value=="1") {
+
+            document.getElementById("step3").innerHTML = "You Got it!";
+            playAudio("correct.mp3");
+
+            document.getElementById("gameDry").remove()
+            document.getElementById("gameDryC2").remove()
+            document.getElementById("step3").remove()
+        }
+        else {
+            mistakescore++;
+            document.getElementById("step3").innerHTML = "Try Again!";
+            playAudio("error.mp3");
+        }
 
     }
-}
+    
 </script>
 
